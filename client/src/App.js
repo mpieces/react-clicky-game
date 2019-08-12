@@ -2,6 +2,7 @@ import React from "react";
 import Image from "./components/Image";
 import API from "./utils/API";
 
+
 // var my_images = [
 //   { id: 0, alt:"bob", src: "https://vignette.wikia.nocookie.net/spongebobgalaxy/images/0/07/SpongeBob_SquarePants.png/revision/latest?cb=20171228024014" },
 //   { id: 1, alt: "krabs", src: "https://vignette3.wikia.nocookie.net/vsbattles/images/8/80/Mr._Krabs.png/revision/latest?cb=20150919162131" },
@@ -71,14 +72,24 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <div>{this.state.searchterm}</div>
-                <div>
-                    <input type="text" value={this.state.searchterm} onChange={this.searchGiphy} />
-                </div>
-                <div>Score: {this.state.score}</div>
-                {this.state.images.map( (img) => ( 
-                    <Image id={img.id} alt={img.slug} src={img.images.fixed_height_still.url} key={img.id} clickme={this.clickme} /> )
-                )}
+                <nav className="navbar navbar-light bg-light">
+                    <span className="navbar-brand mb-0 h1">React Clicky Game</span>
+                    <span className="navbar-text">Score: {this.state.score}</span>
+                    <form className="form-inline my-2 my-lg-0">
+                        <div>{this.state.searchterm}</div>
+                        <input className="form-control mr-sm-2" type="text" value={this.state.searchterm} onChange={this.searchGiphy} placeholder="Search Giphys"/>
+                    </form>
+                </nav>
+                <br />
+                <header className="header text-center">
+                <h1>Clicky Game!</h1>
+                <h2>Search Giphys first.</h2>
+                <h2>Click on an image to earn points, but don't click on any more than once!</h2>
+                </header>
+                 
+                    {this.state.images.map( (img) => ( 
+                        <Image id={img.id} alt={img.slug} src={img.images.fixed_height_still.url} key={img.id} clickme={this.clickme} /> )
+                    )}
             </div>
         )
     }
